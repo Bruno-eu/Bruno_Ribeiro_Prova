@@ -2,7 +2,7 @@
 session_start();
 require_once 'conexao.php';
 
-if($_SERVER['REQUIRED']== "POST") {
+if($_SERVER['REQUEST']== "POST") {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
