@@ -2,7 +2,7 @@
 session_start();
 require_once 'conexao.php';
 
-if($_SERVER['REQUEST']== "POST") {
+if($_SERVER['REQUIRED']== "POST") {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
@@ -31,7 +31,7 @@ if($_SERVER['REQUEST']== "POST") {
     } else {
         //Login invalido
         echo "<script>alert('E-mail ou senha incorretos');window.location.href='login.php';</script>";
-    }
+    } 
 }
 ?>
 <!DOCTYPE html>
@@ -51,7 +51,7 @@ if($_SERVER['REQUEST']== "POST") {
         <label for="senha">Senha: </label>
         <input type="password" id="senha" name="senha" required>
 
-        <buttom type="submit">Entrar</buttom>
+        <button type="submit">Entrar</button>
     </form>
     <p><a href="recuperar_senha.php">Esqueci minha senha</a></p>
 </body>
