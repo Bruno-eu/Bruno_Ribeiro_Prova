@@ -1,4 +1,4 @@
-// Aguarda o carregamento completo do DOM antes de executar o código
+// Aguarda o carregamento completo do DOM antes de executar o código 
 document.addEventListener("DOMContentLoaded", function () {
     let dropdowns = document.querySelectorAll(".dropdown");
 

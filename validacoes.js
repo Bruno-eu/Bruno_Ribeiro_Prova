@@ -1,4 +1,4 @@
-function validarFuncionario() {
+function validarFuncionario() { 
     let nome = document.getElementById("nome_funcionario").value;
     let telefone = document.getElementById("telefone").value;
     let email = document.getElementById("email").value;

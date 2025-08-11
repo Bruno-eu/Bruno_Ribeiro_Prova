@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 require_once 'conexao.php';
 require_once 'funcoes_email.php'; // Arquivo com as funções que geram a senha e simulam o envio
@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         //Simula o envio do email (Grava em txt)
         simularEnvioEmail($email,$senha_temporaria);
-        echo "<script>alert('Uma senha temporaria foi gerada e enviada (simulação). Verifique o arquivo emails_simulados.txt'); window.location.href='login.php';</script>";
+        echo "<script>alert('Uma senha temporaria foi gerada e enviada (simulação). Verifique o arquivo emails_simulados.txt'); window.location.href='index.php';</script>";
         } else {
             echo "<script>alert('Email não encontrado!');</script>";
         }

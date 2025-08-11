@@ -1,5 +1,5 @@
 <?php
-// Configurações para a conexão com o banco de dados
+// Configurações para a conexão com o banco de dados 
 
 // $host: Define o endereço do servidor onde o banco de dados está hospedado.
 // 'localhost' significa que o banco de dados está rodando na mesma máquina
@@ -45,7 +45,7 @@ try {
 
     // Se a conexão for bem-sucedida, a variável $pdo agora contém um objeto
     // que representa a conexão com o banco de dados. Este objeto $pdo
-    // será usado em outros scripts (como o login.php) para executar consultas SQL.
+    // será usado em outros scripts (como o index.php) para executar consultas SQL.
 
 } catch (PDOException $e) {
     // Se ocorrer qualquer erro (uma PDOException) durante a tentativa de conexão no bloco 'try',

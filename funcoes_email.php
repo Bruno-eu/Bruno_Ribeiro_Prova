@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 // Define uma função chamada 'gerarSenhaTemporaria'.
 // Funções são blocos de código que realizam uma tarefa específica e podem ser chamadas (usadas) várias vezes.
