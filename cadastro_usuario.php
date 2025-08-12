@@ -2,10 +2,10 @@
 session_start();
 require_once 'conexao.php';
 
-//Verifica se o usuario tem permição supondo que o perfil 1 seja o adm
-
-if ($_SESSION['perfil']!=1) {
-    echo "Acesso negado!"
+//Verifica se o usuario tem permissão supondo que o perfil 1 seja o adm
+if (!isset($_SESSION['usuario']) || $_SESSION['perfil'] != 1) {
+    echo "<script>alert('Acesso negado!'); window.location.href='index.php';</script>";
+    exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"]=="POST") {
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
     $id_perfil = $_POST['id_perfil'];
 
     $sql="INSERT INTO usuario(nome,email,senha,id_perfil) VALUES (:nome,:email,:senha,:id_perfil)";
-    $stmt $pdo->prepare($sql);
+    $stmt = $pdo->prepare($sql);
 
     $stmt->bindParam(':nome',$nome);
     $stmt->bindParam(':email',$email);
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Principal</title>
-    <link rel="slylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h2>Cadastrar Usuario</h2>

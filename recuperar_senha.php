@@ -11,15 +11,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':email',$email);
     $stmt->execute();
-    $usuario - $stmt->fetch(PDO::FETCH_ASSOC);
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if($usuario) {
         // Gera uma senha temporaria e aleatoria
         $senha_temporaria = gerarSenhaTemporaria();
-        $senha_hash = passwoed_hash($senha_temporaria,Password_Defaul);
+        $senha_hash = password_hash($senha_temporaria, PASSWORD_DEFAULT);
 
         // Atualiza a senha do usuario do banco
-        $sql="UPDATE usuario SET senha = :senha,senha_temporaria = TRUE WHERE email =:email";
+        $sql="UPDATE usuario SET senha = :senha, senha_temporaria = 1 WHERE email = :email";
         $stmt=$pdo->prepare($sql);
         $stmt->bindParam(':senha',$senha_hash);
         $stmt->bindParam(':email',$email);
@@ -39,11 +39,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar Senha</title>
-    <link rel="slylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h2>Recuperar Senha</h2>
-    <form action="recuperar_senha.php" mrthod="post">
+    <form action="recuperar_senha.php" method="post">
         <label for="email">Digite o seu email cadastrado</label>
         <input type="email" id="email" name="email" required>
 

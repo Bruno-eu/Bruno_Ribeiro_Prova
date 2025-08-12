@@ -11,7 +11,7 @@ if(!isset($_SESSION['id_usuario'])){
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_usuario = $_SESSION['id_usuario'];
     $nova_senha = $_POST['nova_senha'];
-    $confirmar_senha = $POST['confirmar_senha'];
+    $confirmar_senha = $_POST['confirmar_senha'];
 
     if($nova_senha !== $confirmar_senha) {
         echo "<script>alert('As senhas não coincidem!');</script>";
@@ -23,14 +23,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $senha_hash = password_hash($nova_senha, PASSWORD_DEFAULT);
 
         //Atualiza a senha e remove o status de temporaria
-        $sql="UPDATE usuario SET senha= :senha,senha_temporaria = FALSE WHERE id_usuario = :id";
+        $sql="UPDATE usuario SET senha = :senha, senha_temporaria = 0 WHERE id_usuario = :id";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':senha',$senha_hash);
         $stmt->bindParam(':id',$id_usuario);
 
         if($stmt->execute()) {
             session_destroy(); //Finaliza a sessão
-            echo "<script>alert('Senha alterada com sucesso! Faça login novamente');window.location.href-'index.php';</script>";
+            echo "<script>alert('Senha alterada com sucesso! Faça login novamente');window.location.href='index.php';</script>";
         } else {
             echo "<script>alert('Erro ao alterar a senha!');</script>";
         }
@@ -43,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alterar Senha</title>
-    <link rel="slylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h2>Alterar Senha</h2>
@@ -61,16 +61,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         </label>
 
         <button type="submit">Salvar nova senha</button>
-
     </form>
+    
+    <p><a href="index.php">Voltar para o Login</a></p>
 
 <script>
     function mostrarSenha() {
-        var_senha1 = document.getElementById("nova_senha");
-        var_senha2 = document.getElementById("confirmar_senha");
-        var_tipo = senha1.type === "password" ? "text"; "password";
-        senha1.type=tipo;
-        senha2.type=tipo;
+        var senha1 = document.getElementById("nova_senha");
+        var senha2 = document.getElementById("confirmar_senha");
+        var tipo = senha1.type === "password" ? "text" : "password";
+        senha1.type = tipo;
+        senha2.type = tipo;
     }
 </script>
 </body>

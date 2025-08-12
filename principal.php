@@ -16,9 +16,9 @@ $stmtPerfil->execute();
 $perfil = $stmtPerfil->fetch(PDO::FETCH_ASSOC);
 $nome_perfil = $perfil['nome_perfil'];
 
-//Definição das permições por perfil
+//Definição das permissões por perfil
 
-$permicoes = [
+$permissoes = [
     1 =>["Cadastrar"=>["cadastro_usuario.php","cadastro_perfil.php","cadastro_cliente.php","cadastro_fornecedor.php","cadastro_produto.php","cadastro_funcionario.php"],
         "Buscar"=>["buscar_usuario.php","buscar_perfil.php","buscar_cliente.php","buscar_fornecedor.php","buscar_produto.php","buscar_funcionario.php"],
         "Alterar"=>["alterar_usuario.php","alterar_perfil.php","alterar_cliente.php","alterar_fornecedor.php","alterar_produto.php","alterar_funcionario.php"],
@@ -36,11 +36,11 @@ $permicoes = [
 
         4 =>["Cadastrar"=>["cadastro_cliente.php"],
         "Buscar"=>["buscar_produto.php"],
-        "Alterar"=>["alterar_cliente.php"],
+        "Alterar"=>["alterar_cliente.php"]]
 ];
 
-//Obtendo as opçãoes disponiveis para o perfil logado
-$opcoes_menu = $permicoes['id_perfil'];
+//Obtendo as opções disponíveis para o perfil logado
+$opcoes_menu = $permissoes[$id_perfil];
 
 ?>
 
@@ -50,7 +50,7 @@ $opcoes_menu = $permicoes['id_perfil'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Principal</title>
-    <link rel="slylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="scripts.js"></script>
 </head>
 <body>
@@ -74,9 +74,9 @@ $opcoes_menu = $permicoes['id_perfil'];
                     <ul class="dropdown-menu">
                     <?php foreach($arquivos as $arquivo): ?>
                         <li>
-                            <a href="<?=$arquivo ?>"<?=ucfirst(str_replace("_"," ",basename($arquivo,".php")))?>></a>
+                            <a href="<?=$arquivo ?>"><?=ucfirst(str_replace("_"," ",basename($arquivo,".php")))?></a>
                         </li>
-                        <?php endforeach; ?>
+                    <?php endforeach; ?>
                     </ul>
                 </li>
             <?php endforeach; ?>

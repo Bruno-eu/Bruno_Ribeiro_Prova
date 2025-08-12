@@ -2,7 +2,7 @@
 session_start();
 require_once 'conexao.php';
 
-if($_SERVER['REQUEST']== "POST") {
+if($_SERVER['REQUEST_METHOD'] == "POST") {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
@@ -30,7 +30,7 @@ if($_SERVER['REQUEST']== "POST") {
         }
     } else {
         //Login invalido
-        echo "<script>alert('E-mail ou senha incorretos');window.location.href='login.php';</script>";
+        echo "<script>alert('E-mail ou senha incorretos');window.location.href='index.php';</script>";
     } 
 }
 ?>
@@ -40,11 +40,11 @@ if($_SERVER['REQUEST']== "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="slylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h2>Login</h2>
-    <form action="login.php" method="post">
+    <form action="index.php" method="post">
         <label for="email">E-mail: </label>
         <input type="email" id="email" name="email" required>
 
