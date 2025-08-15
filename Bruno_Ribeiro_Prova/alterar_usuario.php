@@ -23,7 +23,7 @@
             } else {
                 $sql = "SELECT * FROM usuario WHERE nome LIKE :busca_nome";
                 $stmt = $pdo->prepare($sql);
-                $stmt->bindParam(':busca_nome',"$busca%",PDO::PARAM_STR);
+                $stmt->bindValue(':busca_nome',"$busca%",PDO::PARAM_STR);
             }
 
             $stmt->execute();
@@ -79,7 +79,7 @@
                 </select>
 
                 <!-- se o usuario logado for adm, exibir opção de alterar senha -->
-                <?php if ($_SESSION['perfil'] == 1: )?>
+                <?php if ($_SESSION['perfil'] == 1): ?>
                     <label for="nova_senha">Nova Senha</label>
                     <input type="password" id="nova_senha" name="nova_senha">
                 <?php endif;?>

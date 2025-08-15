@@ -20,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST" && !empty($_POST['busca'])) {
         $stmt=$pdo->prepare($sql);
         $stmt->bindParam(':busca',$busca, PDO::PARAM_INT);
     } else {
-            $sql="SELECT * FROM usuario WHERE LIKE :busca_nome ORDER BY nome ASC";
+            $sql = "SELECT * FROM usuario WHERE nome LIKE :busca_nome ORDER BY nome ASC";
             $stmt=$pdo->prepare($sql);
             $stmt->bindValue(':busca_nome',"$busca%", PDO::PARAM_STR);
     }
