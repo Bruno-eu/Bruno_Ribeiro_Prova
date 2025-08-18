@@ -118,33 +118,29 @@ header {
     background-color: #ddd;
 }
 
-/* Centraliza o formulário na tela */
 form {
-    width: 500px; /* Define uma largura fixa */
-    margin: 50px auto; /* Centraliza na tela */
+    width: 500px;
+    margin: 50px auto;
     padding: 20px;
-    background-color: #f9f9f9; /* Fundo suave */
-    border-radius: 10px; /* Cantos arredondados */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centraliza os elementos dentro do formulário */
+    align-items: center;
 }
 
-
-/* Ajusta as labels */
 label {
-    display: block; /* Mantém acima do campo */
+    display: block;
     font-weight: bold;
-    margin-bottom: 5px; /* Espaço entre label e campo */
+    margin-bottom: 5px;
 }
 
-/* Ajusta os campos de entrada */
 input[type="text"],
 input[type="email"],
 input[type="password"],
 select {
-    width: 80%; /* Ocupa toda a largura do formulário */
+    width: 80%;
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -152,11 +148,10 @@ select {
     font-size: 16px;
 }
 
-/* Ajusta os botões */
 button {
     width: 80%;
     padding: 10px;
-    background-color: #007bff; /* Azul bonito */
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -165,6 +160,105 @@ button {
     transition: 0.3s;
 }
 
-button:hover {
-    background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
+h2 {
+    margin-top: 40px;
+    font-size: 22px;
+    color: #333;
+}
+
+button {
+    background-color: #007bff;
+    margin-top: 10px;
+    background-color: #0056b3;
+}
+
+a[href="principal.php"] {
+    display: inline-block;
+    margin-top: 20px;
+    color: purple;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+form {
+    width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+table {
+    width: 90%;
+    margin: 0 auto 30px;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.1);
+}
+
+table th,
+table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+table th {
+    background-color: #007bff;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+td a {
+    margin: 0 5px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+td a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+a[href="principal.php"] {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: purple;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+.btn-voltar {
+    display: inline-block;
+    width: 150px;
+    padding: 10px;
+    margin: 0 auto 30px;
+    background-color: purple;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
 }

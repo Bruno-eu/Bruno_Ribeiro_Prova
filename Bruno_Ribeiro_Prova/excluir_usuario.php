@@ -32,6 +32,28 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
         echo "<script>alert('Erro ao excluir usuario!');window.location.href='excuir_usuario.php';</script>";
     }
 }
+
+$id_perfil = $_SESSION['perfil'];
+
+$permissoes = [
+    1 => ["Cadastrar"=>["cadastro_usuario.php","cadastro_perfil.php","cadastro_cliente.php","cadastro_fornecedor.php","cadastro_produto.php","cadastro_funcionario.php"],
+          "Buscar"=>["buscar_usuario.php","buscar_perfil.php","buscar_cliente.php","buscar_fornecedor.php","buscar_produto.php","buscar_funcionario.php"],
+          "Alterar"=>["alterar_usuario.php","alterar_perfil.php","alterar_cliente.php","alterar_fornecedor.php","alterar_produto.php","alterar_funcionario.php"],
+          "Excluir"=>["excluir_usuario.php","excluir_perfil.php","excluir_cliente.php","excluir_fornecedor.php","excluir_produto.php","excluir_funcionario.php"]],
+    2 => ["Cadastrar"=>["cadastro_cliente.php"],
+          "Buscar"=>["buscar_cliente.php","buscar_fornecedor.php","buscar_produto.php"],
+          "Alterar"=>["alterar_fornecedor.php","alterar_produto.php"],
+          "Excluir"=>["excluir_produto.php"]],
+    3 => ["Cadastrar"=>["cadastro_fornecedor.php","cadastro_produto.php"],
+          "Buscar"=>["buscar_cliente.php","buscar_fornecedor.php","buscar_produto.php"],
+          "Alterar"=>["alterar_fornecedor.php","alterar_produto.php"],
+          "Excluir"=>["excluir_produto.php"]],
+    4 => ["Cadastrar"=>["cadastro_cliente.php"],
+          "Buscar"=>["buscar_produto.php"],
+          "Alterar"=>["alterar_cliente.php"]]
+];
+
+$opcoes_menu = $permissoes[$id_perfil];
 ?>
 
 <!DOCTYPE html>
@@ -43,6 +65,20 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<ul class="menu">
+<?php foreach($opcoes_menu as $categoria =>$arquivos): ?>
+    <li class="dropdown">
+        <a href="#"><?=$categoria ?></a>
+        <ul class="dropdown-menu">
+        <?php foreach($arquivos as $arquivo): ?>
+            <li>
+                <a href="<?=$arquivo ?>"><?=ucfirst(str_replace("_"," ",basename($arquivo,".php")))?></a>
+            </li>
+        <?php endforeach; ?>
+        </ul>
+    </li>
+<?php endforeach; ?>
+</ul>
     <h2>Excluir Usuario</h2>
     <?php if(!empty($usuarios)):?>    
         <table border="1">
@@ -69,6 +105,6 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
             <p>Nenhum usuario encontrado</p>
         <?php endif; ?>
 
-        <a href="principal.php">Voltar</a>
+        <button type="button" class="btn-voltar" onclick="window.location.href='principal.php'">Voltar</button>
 </body>
 </html>
