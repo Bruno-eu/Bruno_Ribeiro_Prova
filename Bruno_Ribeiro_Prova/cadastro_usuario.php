@@ -39,6 +39,22 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <nav>
+        <ul class="menu">
+            <?php foreach($opcoes_menu as $categoria =>$arquivos): ?>
+                <li class="dropdown">
+                    <a href="#"><?=$categoria ?></a>
+                    <ul class="dropdown-menu">
+                    <?php foreach($arquivos as $arquivo): ?>
+                        <li>
+                            <a href="<?=$arquivo ?>"><?=ucfirst(str_replace("_"," ",basename($arquivo,".php")))?></a>
+                        </li>
+                    <?php endforeach; ?>
+                    </ul>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </nav>
     <h2>Cadastrar Usuario</h2>
     <form action="cadastro_usuario.php" method="POST">
 
