@@ -27,9 +27,9 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
     $stmt->bindParam(':id',$id_usuario,PDO::PARAM_INT);
 
     if($stmt->execute()) {
-        echo "<script>alert('Usuario Excluido com sucesso!');window.location.href='excuir_usuario.php';</script>";
+        echo "<script>alert('Usuario Excluido com sucesso!');window.location.href='excluir_usuario.php';</script>";
     } else {
-        echo "<script>alert('Erro ao excluir usuario!');window.location.href='excuir_usuario.php';</script>";
+        echo "<script>alert('Erro ao excluir usuario!');window.location.href='excluir_usuario.php';</script>";
     }
 }
 
@@ -61,8 +61,9 @@ $opcoes_menu = $permissoes[$id_perfil];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excuir Usuario</title>
+    <title>Excluir Usuario</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="validacoes.js"></script>
 </head>
 <body>
 <ul class="menu">

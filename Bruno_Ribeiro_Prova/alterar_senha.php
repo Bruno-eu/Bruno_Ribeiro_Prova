@@ -44,6 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alterar Senha</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="validacoes.js"></script>
 </head>
 <body>
     <h2>Alterar Senha</h2>
@@ -51,28 +52,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <form action="alterar_senha.php" method="post">
         <label for="nova_senha">Nova Senha</label>
-        <input type="password" id="nova_senha" name="nova_senha" required>
+        <input type="password" id="nova_senha" name="nova_senha" required minlength="8" oninput="validarSenha(this)">
 
         <label for="confirmar_senha"> Confirmar Nova Senha</label>
-        <input type="password" id="confirmar_senha" name="confirmar_senha" required>
+        <input type="password" id="confirmar_senha" name="confirmar_senha" required oninput="validarConfirmarSenha(document.getElementById('nova_senha'), this)">
 
         <label>
             <input type="checkbox" onclick="mostrarSenha()"> Mostrar Senha
         </label>
+        
+        <div id="requisitos-senha" style="text-align: left; margin: 10px 0; font-size: 12px; color: #666;">
+            <strong>Requisitos da senha:</strong><br>
+            • Mínimo de 8 caracteres<br>
+            • As senhas devem coincidir
+        </div>
 
         <button type="submit">Salvar nova senha</button>
     </form>
     
     <p><a href="index.php">Voltar para o Login</a></p>
 
-<script>
-    function mostrarSenha() {
-        var senha1 = document.getElementById("nova_senha");
-        var senha2 = document.getElementById("confirmar_senha");
-        var tipo = senha1.type === "password" ? "text" : "password";
-        senha1.type = tipo;
-        senha2.type = tipo;
-    }
-</script>
+
 </body>
 </html>

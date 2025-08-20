@@ -9,10 +9,19 @@ if($_SESSION['perfil'] !=1) {
 
 if($_SERVER["REQUEST_METHOD"] =="POST") {
     $id_usuario = $_POST['id_usuario'];
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
+    $nome = trim($_POST['nome']);
+    $email = trim($_POST['email']);
     $id_perfil = $_POST['id_perfil'];
     $nova_senha = !empty($_POST['nova_senha'])? password_hash($_POST['nova_senha'],PASSWORD_DEFAULT): null;
+    
+    // Validação do nome - apenas letras e espaços
+    if (!preg_match('/^[A-Za-zÀ-ÿ\s]+$/', $nome)) {
+        echo "<script>alert('O nome deve conter apenas letras e espaços!'); window.location.href='alterar_usuario.php';</script>";
+        exit();
+    } elseif (strlen($nome) < 2) {
+        echo "<script>alert('O nome deve ter pelo menos 2 caracteres!'); window.location.href='alterar_usuario.php';</script>";
+        exit();
+    }
 
     //atualiza os dados do usuario
     if($nova_senha){

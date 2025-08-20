@@ -69,6 +69,7 @@ $opcoes_menu = $permissoes[$id_perfil];
         <link rel="stylesheet" href="styles.css">
         <!-- certifique-se de que o java script esta sendo carregado corretamente -->
         <script src="scripts.js"></script>
+        <script src="validacoes.js"></script>
     </head>
     <body>
     <ul class="menu">
@@ -103,17 +104,17 @@ $opcoes_menu = $permissoes[$id_perfil];
                 <input type="hidden" name="id_usuario" value="<?=htmlspecialchars($usuario['id_usuario'])?>">
 
                 <label for="nome">Nome: </label>
-                <input type="text" id="nome" name="nome" value="<?=htmlspecialchars($usuario['nome'])?>" required>
+                <input type="text" id="nome" name="nome" value="<?=htmlspecialchars($usuario['nome'])?>" required pattern="[A-Za-zÀ-ÿ\s]+" title="Digite apenas letras e espaços" oninput="validarNome(this)">
 
                 <label for="email">Email: </label>
                 <input type="email" id="email" name="email" value="<?=htmlspecialchars($usuario['email'])?>" required>
 
                 <label for="id_perfil">Perfil: </label>
                 <select id="id_perfil" name="id_perfil">
-                    <option value="1" <?=$usuario['id_perfil'] == 1 ?'select':''?>>Administrador</option>
-                    <option value="2" <?=$usuario['id_perfil'] == 2 ?'select':''?>>Secretaria</option>
-                    <option value="3" <?=$usuario['id_perfil'] == 3 ?'select':''?>>Almoxarifado</option>
-                    <option value="4" <?=$usuario['id_perfil'] == 4 ?'select':''?>>Cliente</option>
+                    <option value="1" <?=$usuario['id_perfil'] == 1 ?'selected':''?>>Administrador</option>
+                    <option value="2" <?=$usuario['id_perfil'] == 2 ?'selected':''?>>Secretaria</option>
+                    <option value="3" <?=$usuario['id_perfil'] == 3 ?'selected':''?>>Almoxarifado</option>
+                    <option value="4" <?=$usuario['id_perfil'] == 4 ?'selected':''?>>Cliente</option>
                 </select>
 
                 <!-- se o usuario logado for adm, exibir opção de alterar senha -->
@@ -127,5 +128,7 @@ $opcoes_menu = $permissoes[$id_perfil];
             </form>
         <?php endif;?>
         <button type="button" class="btn-voltar" onclick="window.location.href='principal.php'">Voltar</button>
+
+
 </body>
 </html>

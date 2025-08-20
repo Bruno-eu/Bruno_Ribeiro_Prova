@@ -62,6 +62,7 @@ $opcoes_menu = $permissoes[$id_perfil];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscar Usuario</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="validacoes.js"></script>
 </head>
 <body>
 <ul class="menu">
@@ -83,7 +84,7 @@ $opcoes_menu = $permissoes[$id_perfil];
 
     <form action="buscar_usuario.php" method="POST">
         <label for="busca">Digite o ID ou NOME(Opcional)</label>
-        <input type="text" id="busca" name="busca">
+        <input type="text" id="busca" name="busca" oninput="validarBusca(this)">
         <button type="submit">Pesquisar</button>
     </form>
     <?php if(!empty($usuarios)):?>

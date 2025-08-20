@@ -52,6 +52,7 @@ $opcoes_menu = $permissoes[$id_perfil];
     <title>Painel Principal</title>
     <link rel="stylesheet" href="styles.css">
     <script src="scripts.js"></script>
+    <script src="validacoes.js"></script>
 </head>
 <body>
     <header>

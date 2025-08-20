@@ -40,12 +40,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar Senha</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="validacoes.js"></script>
 </head>
 <body>
     <h2>Recuperar Senha</h2>
     <form action="recuperar_senha.php" method="post">
         <label for="email">Digite o seu email cadastrado</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email" required oninput="validarEmail(this)">
 
         <button type="submit">Enviar a Senha Temporaria</button>
     </form>

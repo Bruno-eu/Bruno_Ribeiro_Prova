@@ -9,10 +9,18 @@ if (!isset($_SESSION['usuario']) || $_SESSION['perfil'] != 1) {
 }
 
 if ($_SERVER["REQUEST_METHOD"]=="POST") {
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $senha = password_hash ($_POST['senha'],PASSWORD_DEFAULT);
+    $nome = trim($_POST['nome']);
+    $email = trim($_POST['email']);
+    $senha = $_POST['senha'];
     $id_perfil = $_POST['id_perfil'];
+    
+    // Validação do nome - apenas letras e espaços
+    if (!preg_match('/^[A-Za-zÀ-ÿ\s]+$/', $nome)) {
+        echo "<script>alert('O nome deve conter apenas letras e espaços!');</script>";
+    } elseif (strlen($nome) < 2) {
+        echo "<script>alert('O nome deve ter pelo menos 2 caracteres!');</script>";
+    } else {
+        $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
     $sql="INSERT INTO usuario(nome,email,senha,id_perfil) VALUES (:nome,:email,:senha,:id_perfil)";
     $stmt = $pdo->prepare($sql);
@@ -22,10 +30,11 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
     $stmt->bindParam(':senha',$senha);
     $stmt->bindParam(':id_perfil',$id_perfil);
 
-    if($stmt->execute()) {
-        echo "<script>alert('Usuario cadastrado com sucesso');</script>";
-    } else {
-        echo "<script>alert('Erro ao cadastrar usuario');</script>";
+        if($stmt->execute()) {
+            echo "<script>alert('Usuario cadastrado com sucesso');</script>";
+        } else {
+            echo "<script>alert('Erro ao cadastrar usuario');</script>";
+        }
     }
 }
 
@@ -60,6 +69,7 @@ $opcoes_menu = $permissoes[$id_perfil];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Principal</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="validacoes.js"></script>
 </head>
 <body>
 <ul class="menu">
@@ -81,13 +91,18 @@ $opcoes_menu = $permissoes[$id_perfil];
     <form action="cadastro_usuario.php" method="POST">
 
         <label for="nome">Nome: </label>
-        <input type="text" id="nome" name="nome" required>
+        <input type="text" id="nome" name="nome" required pattern="[A-Za-zÀ-ÿ\s]+" title="Digite apenas letras e espaços" oninput="validarNome(this)">
         
         <label for="email">Email: </label>
         <input type="email" id="email" name="email" required>
 
         <label for="senha">Senha: </label>
-        <input type="password" id="senha" name="senha" required>
+        <input type="password" id="senha" name="senha" required minlength="8" oninput="validarSenha(this)">
+        
+        <div id="requisitos-senha" style="text-align: left; margin: 10px 0; font-size: 12px; color: #666;">
+            <strong>Requisitos da senha:</strong><br>
+            • Mínimo de 8 caracteres
+        </div>
 
         <label for="id_perfil">Perfil</label>
         <select id="id_perfil" name="id_perfil">
@@ -102,6 +117,7 @@ $opcoes_menu = $permissoes[$id_perfil];
     </form>
     
     <button type="button" class="btn-voltar" onclick="window.location.href='principal.php'">Voltar</button>
+
 
 </body>
 </html>
