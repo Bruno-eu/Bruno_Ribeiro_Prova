@@ -9,12 +9,12 @@ if(!isset($_SESSION['usuario'])) {
 
 //Obtendo o nome do perfil do usuario logado
 $id_perfil = $_SESSION['perfil'];
-$sqlPerfil ="SELECT nome_perfil FROM perfil WHERE id_perfil = :id_perfil";
+$sqlPerfil ="SELECT nome_cliente FROM perfil WHERE id_perfil = :id_perfil";
 $stmtPerfil = $pdo->prepare($sqlPerfil);
 $stmtPerfil->bindParam(':id_perfil',$id_perfil);
 $stmtPerfil->execute();
 $perfil = $stmtPerfil->fetch(PDO::FETCH_ASSOC);
-$nome_perfil = $perfil['nome_perfil'];
+$nome_cliente = $perfil['nome_cliente'];
 
 //Definição das permissões por perfil
 
@@ -56,7 +56,7 @@ $opcoes_menu = $permissoes[$id_perfil];
 <body>
     <header>
         <div class="saudacao">
-            <h2>Bem Vindo, <?php echo $_SESSION["usuario"]; ?>! Perfil: <?php echo $nome_perfil; ?> </h2>
+            <h2>Bem Vindo, <?php echo $_SESSION["usuario"]; ?>! Perfil: <?php echo $nome_usuario; ?> </h2>
         </div>
 
         <div class="logout">
@@ -82,5 +82,11 @@ $opcoes_menu = $permissoes[$id_perfil];
             <?php endforeach; ?>
         </ul>
     </nav>
+
+    <center>
+            <adress>
+                Bruno Henrique Ribeiro | Estudante curso tecnico desenvolvimento de sistemas
+            </adress>
+    </center>
 </body>
 </html>
