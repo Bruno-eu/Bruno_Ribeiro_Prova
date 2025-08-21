@@ -103,5 +103,10 @@ $opcoes_menu = $permissoes[$id_perfil];
     
     <button type="button" class="btn-voltar" onclick="window.location.href='principal.php'">Voltar</button>
 
+    <center>
+            <adress>
+                Bruno Henruque Ribeiro | Estudante curso tecnico desenvolvimento de sistemas
+            </adress>
+    </center>
 </body>
 </html>
