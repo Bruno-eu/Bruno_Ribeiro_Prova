@@ -89,10 +89,10 @@ $opcoes_menu = $permissoes[$id_perfil];
 
         <label for="telefone">Telefone: </label>
         <input type="text" id="telefone" name="telefone" required>
-        
+
         <label for="endereço">Endereço: </label>
         <input type="text" id="endereço" name="endereço" required>
-        
+
         <label for="email">Email: </label>
         <input type="email" id="email" name="email" required>
 
@@ -105,5 +105,11 @@ $opcoes_menu = $permissoes[$id_perfil];
     
     <button type="button" class="btn-voltar" onclick="window.location.href='principal.php'">Voltar</button>
 
+    <center>
+            <adress>
+                Bruno Henrique Ribeiro | Estudante curso tecnico desenvolvimento de sistemas
+                Eu não consegui fazer, não vou ficar dando desculpa só não consigo pensar nisso
+            </adress>
+    </center>
 </body>
 </html>
