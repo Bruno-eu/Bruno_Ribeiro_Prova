@@ -45,14 +45,12 @@ function validarConfirmarSenha(senhaInput, confirmarInput) {
 }
 
 // Função para mostrar/ocultar senha
-function mostrarSenha() {
-    const senha1 = document.getElementById("nova_senha");
-    const senha2 = document.getElementById("confirmar_senha");
-    
-    if (senha1 && senha2) {
-        const tipo = senha1.type === "password" ? "text" : "password";
-        senha1.type = tipo;
-        senha2.type = tipo;
+function toggleSenha(inputId) {
+    const input = document.getElementById(inputId);
+    if (input.type === "password") {
+        input.type = "text";
+    } else {
+        input.type = "password";
     }
 }
 
@@ -66,4 +64,19 @@ function validarBusca(input) {
     
     // Remove espaços no início e fim
     input.value = input.value.trim();
+}
+
+// Validação de telefone
+function validarTelefone(input) {
+    // Remove todos os caracteres não numéricos
+    let telefone = input.value.replace(/\D/g, '');
+    
+    // Formata o telefone como (00) 0000-0000 ou (00) 00000-0000
+    if (telefone.length === 10) {
+        telefone = telefone.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+    } else if (telefone.length === 11) {
+        telefone = telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    }
+    
+    input.value = telefone;
 }

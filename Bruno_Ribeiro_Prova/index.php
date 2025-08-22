@@ -47,7 +47,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     <h2>Login</h2>
     <form action="index.php" method="post">
         <label for="email">E-mail: </label>
-        <input type="email" id="email" name="email" required oninput="validarEmail(this)">
+        <input type="email" id="email" name="email" required>
 
         <label for="senha">Senha: </label>
         <input type="password" id="senha" name="senha" required>
